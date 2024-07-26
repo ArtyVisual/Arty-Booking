@@ -1,22 +1,21 @@
 const express = require("express");
 const mongoose = require('mongoose');
 const cors = require('cors');
-const fetch = require('node-fetch');
 const FlightModel = require('./models/Flight'); // Import Flight model
 const HotelModel = require('./models/Hotel'); // Import Hotel model
 const TrainModel = require('./models/Train'); // Import Train model
 
 const app = express();
 
-// Use cors middleware
+// CORS middleware setup
 app.use(cors({
-    origin: "https://arty-booking-app.vercel.app",
-    methods: ["POST", "GET", "OPTIONS"],
+    origin: "https://arty-booking-app.vercel.app", // Ensure this matches your frontend URL
+    methods: ["POST", "GET", "OPTIONS"], // Allow necessary methods
     credentials: true,
-    allowedHeaders: ["Content-Type", "Authorization"]
+    allowedHeaders: ["Content-Type", "Authorization"] // Explicitly specify allowed headers
 }));
-app.use(express.json());
 
+app.use(express.json());
 
 // Connect to MongoDB
 mongoose.connect("mongodb+srv://abbasvajwana1:abbasatlas77@cluster1.0bhubyy.mongodb.net/travelDB", { useNewUrlParser: true, useUnifiedTopology: true })
@@ -62,7 +61,7 @@ app.post('/findHotels', (req, res) => {
 
 // Train search endpoint
 app.post('/findTrains', (req, res) => {
-     const { from, to } = req.body;
+    const { from, to } = req.body;
     TrainModel.find({ from: from, to: to })
         .then(trains => {
             if (trains.length > 0) {
@@ -76,7 +75,6 @@ app.post('/findTrains', (req, res) => {
         });
 });
 
+// Handle preflight requests
+app.options('*', cors()); // Handle preflight requests for all routes
 
-app.listen(3001, () => {
-    console.log("Server is running on port 3001");
-});
