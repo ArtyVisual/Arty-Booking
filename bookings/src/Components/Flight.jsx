@@ -37,7 +37,7 @@ const Flight = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault(); // Prevent default form submission
-        axios.post('https://arty-booking-api.vercel.app/findFlights', { from: From, to: To })
+        axios.post('/findFlights', { from: From, to: To })
             .then(result => {
                 
                 if (result.data && result.data !== "no flights available") {
