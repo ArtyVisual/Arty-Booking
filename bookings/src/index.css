@@ -1,0 +1,296 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.main{
+  background-image: url(img/bg3.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.246);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 10px;
+  border-bottom: 2px solid rgba(83, 82, 82, 0.898);
+  border-top: 2px solid rgba(255, 255, 255, 0.311);
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.glass-effect1 {
+  background: rgba(255, 255, 255, 0.246);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border-bottom: 2px solid rgba(83, 82, 82, 0.898);
+  border-top: 2px solid rgba(255, 255, 255, 0.311);
+  box-shadow:11px 9px 10px rgb(3 3 3 / 39%);
+}
+
+.glass-effect2 {
+  background: rgba(255, 255, 255, 0.246);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 10px;
+  border-bottom: 2px solid rgba(83, 82, 82, 0.898);
+  border-top: 2px solid rgba(255, 255, 255, 0.311);
+  box-shadow:11px 9px 10px rgba(71, 71, 71, 0.39);
+}
+.glass-effect3 {
+  background: rgba(27, 86, 128, 0.547);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 10px;
+  border-bottom: 2px solid rgba(83, 82, 82, 0.898);
+  border-top: 2px solid rgba(255, 255, 255, 0.311);
+  box-shadow:11px 9px 10px rgba(71, 71, 71, 0.39);
+}
+.glass-effect4 {
+  background: rgb(146 216 255 / 80%);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 10px;
+  border-bottom: 2px solid rgba(83, 82, 82, 0.898);
+  border-top: 2px solid rgba(255, 255, 255, 0.311);
+  box-shadow:11px 9px 10px rgba(71, 71, 71, 0.39);
+}
+.glass-effect5 {
+  background: rgba(0, 0, 1, 0.709);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 10px;
+  border-bottom: 2px solid rgba(83, 82, 82, 0.898);
+  border-top: 2px solid rgba(255, 255, 255, 0.311);
+  box-shadow:11px 9px 10px rgba(71, 71, 71, 0.39);
+}
+
+.nav{
+  background-image: url(img/navbg.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+.bmenu{
+  z-index: 1;
+  padding: 2%;
+  position: fixed;
+  bottom:1%; 
+}
+.schedule{
+  border-radius: 5px;
+  background-color: rgba(6, 6, 6, 0.502);
+}
+
+.buttons button{
+  border:2px solid white;
+  font-size: 1.5vw;
+  width:150px ;
+  border-radius: 30px;
+  height: 40px;
+  color: aliceblue;
+  background-color: rgb(12, 30, 40);
+  text-align: center;
+  box-shadow:-1px 9px 6px 0px #252424;
+}
+
+.buttons button:hover{
+  box-shadow:-1px 4px 6px 0px #252424;
+}
+
+.hotel{
+  padding: 2%;
+  color: white;
+  height: 100%;
+  width: 100%;
+  background-image: url(img/new1.jpg);
+  background-position: center;
+  background-size:cover;
+  background-repeat: no-repeat;
+ 
+  /* filter: blur(7px); */
+
+}
+
+.cards{
+  background-color:#252424d9;
+  
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  z-index: 0;
+  pointer-events: none; 
+  overflow: hidden;
+  transition: all 2s ease-out;
+
+}
+
+.hdelay{
+  position: absolute;
+  top: 15%;
+  left : 25%;
+  height: 700px;
+  width: 700px;
+  z-index: 1;
+  transition: all 1s ease-in-out;
+}
+
+
+.bus{
+  position: absolute;
+  top: 15%;
+  left : 25%;
+  z-index: 1;
+  transition: all 1s ease-in-out;
+}
+
+.bus1{
+  position: absolute;
+  top: 18%;
+  left : 23%;
+  height: 700px;
+  width: 700px;
+  z-index: 1;
+  transition: all 1s ease-in-out;
+}
+
+
+.plane{
+  position: absolute;
+  z-index: 1;
+  transition: all 3s ease-in-out;
+}
+
+.train{
+  position: absolute;
+  top: 15%;
+  height: 700px;
+  width: 700px;
+  z-index: 1;
+  transition: all 3s ease-in-out;
+}
+
+.saver{
+  height: 50px;
+  width: 50px;
+}
+
+.searchpanel{
+  margin: 0% 35%;
+  
+}
+
+.outline{
+  padding: 1%;
+  border-radius: 30px;
+  border: 1px solid rgb(255, 255, 255);
+}
+
+.from{
+  height: 40px;
+  width: 250px;
+  border-radius: 20px;
+  color: rgb(3, 38, 62);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight:600;
+  
+  
+}
+
+.to{
+  height: 40px;
+  width: 250px;
+  border-radius: 20px;
+  color: rgb(3, 38, 62);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight:600;
+}
+
+.city{
+  height: 40px;
+  width: 250px;
+  border-radius: 20px;
+  color: rgb(3, 38, 62);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight:600;
+}
+
+.lobster-regular {
+  font-family: "Lobster", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.lobster-bold {
+  font-family: "Lobster Two", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.bebas-neue {
+  color: white;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-style: normal;
+}
+
+
+@media only screen and (max-width:700px) {
+
+  .searchpanel{
+    margin: 0% 5%;
+    
+  }
+  
+  .buttons button{
+    border:2px solid white;
+    font-size: 4vw;
+    width:150px ;
+    border-radius: 30px;
+    height: 40px;
+    color: aliceblue;
+    background-color: rgb(12, 30, 40);
+    text-align: center;
+    box-shadow:-1px 9px 6px 0px #252424;
+  }
+
+  .hdelay{
+    position: absolute;
+    top: 55%;
+    left : 15%;
+    height: 300px;
+    width: 300px;
+    z-index: 1;
+    transition: all 1s ease-in-out;
+  }
+
+  .train{
+    position: absolute;
+    top: 15%;
+    height:600px;
+    width: 500px;
+    z-index: 1;
+    transition: all 3s ease-in-out;
+  }
+
+  .bus1{
+    position: fixed;
+    top: 45%;
+    left : 5%;
+    height: 400px;
+    width: 350px;
+    z-index: 1;
+    transition: all 1s ease-in-out;
+  }
+  
+}
