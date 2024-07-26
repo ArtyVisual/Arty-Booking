@@ -38,7 +38,7 @@ const Hotel = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent default form submission
-    axios.post('/api/findHotels', { city: City })
+    axios.post('https://arty-booking-api.vercel.app/findHotels', { city: City })
       .then(result => {
         if (result.data && Array.isArray(result.data) && result.data.length > 0) {
           setHotels(result.data);
