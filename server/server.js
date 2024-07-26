@@ -1,19 +1,10 @@
 const express = require("express");
 const mongoose = require('mongoose');
-const cors = require('cors');
 const FlightModel = require('./models/Flight'); // Import Flight model
 const HotelModel = require('./models/Hotel'); // Import Hotel model
 const TrainModel = require('./models/Train'); // Import Train model
 
 const app = express();
-
-// CORS middleware setup
-app.use(cors({
-    origin: "https://arty-booking-app.vercel.app", // Ensure this matches your frontend URL
-    methods: ["POST", "GET", "OPTIONS"], // Allow necessary methods
-    credentials: true,
-    allowedHeaders: ["Content-Type", "Authorization"] // Explicitly specify allowed headers
-}));
 
 app.use(express.json());
 
@@ -74,7 +65,4 @@ app.post('/findTrains', (req, res) => {
             res.status(500).json({ error: error.message });
         });
 });
-
-// Handle preflight requests
-app.options('*', cors()); // Handle preflight requests for all routes
 
