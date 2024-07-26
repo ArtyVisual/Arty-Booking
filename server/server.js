@@ -10,7 +10,7 @@ const app = express();
 
 // Use cors middleware
 app.use(cors({
-    origin: "",
+    origin: "https://arty-booking-app.vercel.app",
     methods: ["POST", "GET", "OPTIONS"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"]
