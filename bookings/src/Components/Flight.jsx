@@ -37,7 +37,7 @@ const Flight = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault(); // Prevent default form submission
-        axios.post('/findFlights', { from: From, to: To })
+        axios.post('/api/findFlights', { from: From, to: To })
             .then(result => {
                 
                 if (result.data && result.data !== "no flights available") {

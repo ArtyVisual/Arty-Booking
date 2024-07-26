@@ -19,7 +19,7 @@ const Train = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault(); // Prevent default form submission
-        axios.post('/findTrains', { from: From, to: To })
+        axios.post('/api/findTrains', { from: From, to: To })
             .then(result => {
 
                 if (result.data && result.data !== "no trains available") {

@@ -38,7 +38,7 @@ const Hotel = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent default form submission
-    axios.post('/findHotels', { city: City })
+    axios.post('/api/findHotels', { city: City })
       .then(result => {
         if (result.data && Array.isArray(result.data) && result.data.length > 0) {
           setHotels(result.data);
