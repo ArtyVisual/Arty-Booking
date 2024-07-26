@@ -32,7 +32,7 @@ const Events = () => {
   const [hotels, setHotels] = useState([]);
   
   axios.defaults.withCredentials=true;
-  
+
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent default form submission
     axios.post('https://arty-booking-api.vercel.app/findHotels', { city: City })

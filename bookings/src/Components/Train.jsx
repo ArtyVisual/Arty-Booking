@@ -16,7 +16,7 @@ const Train = () => {
 
     
     axios.defaults.withCredentials=true;
-    
+
     const handleSubmit = (e) => {
         e.preventDefault(); // Prevent default form submission
         axios.post('https://arty-booking-api.vercel.app/findTrains', { from: From, to: To })
