@@ -8,6 +8,15 @@ const app = express();
 
 app.use(express.json());
 
+const corsOptions = {
+    origin: 'https://arty-booking-app.vercel.app/', // Replace with your frontend URL
+    optionsSuccessStatus: 200, // For legacy browser support
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true // Allow credentials if needed
+};
+
+app.use(cors(corsOptions));
+
 // Connect to MongoDB
 mongoose.connect("mongodb+srv://abbasvajwana1:abbasatlas77@cluster1.0bhubyy.mongodb.net/travelDB", { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("Connected to MongoDB"))
