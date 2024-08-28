@@ -45,7 +45,7 @@ app.post('/findFlights', (req, res) => {
 });
 
 // Hotel search endpoint
-app.post('/findHotels', (req, res) => {
+app.post('/FindHotels', (req, res) => {
     const { city } = req.body;
     HotelModel.find({ city: city })
         .then(hotels => {
