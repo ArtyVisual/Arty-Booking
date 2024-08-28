@@ -9,11 +9,14 @@ const app = express();
 
 app.use(express.json());
 
-app.use(cors({
-    origin: 'https://arty-booking-app.vercel.app', // Only allow requests from this origin
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow these HTTP methods
-    allowedHeaders: ['Content-Type'], // Allow specific headers
-  }));
+const corsOptions = {
+    origin: 'https://arty-booking-app.vercel.app',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true, // if you need to send cookies or HTTP authentication
+    optionsSuccessStatus: 204,
+  };
+  
+app.use(cors(corsOptions));
 
 // Connect to MongoDB
 mongoose.connect("mongodb+srv://abbasvajwana1:abbasatlas77@cluster1.0bhubyy.mongodb.net/travelDB", { useNewUrlParser: true, useUnifiedTopology: true })
