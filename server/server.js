@@ -7,19 +7,26 @@ const TrainModel = require('./models/Train'); // Import Train model
 
 const app = express();
 
-app.use(express.json());
+// CORS configuration using 'cors' middleware
+const corsOptions = {
+  origin: 'https://arty-booking.vercel.app', // Allow only this origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+  credentials: true, // Allow cookies or HTTP authentication
+  optionsSuccessStatus: 204, // For legacy browser support
+};
 
-app.use((req, res, next) => {
-    // Set CORS headers manually
-    res.header('Access-Control-Allow-Origin', 'https://arty-booking.vercel.app'); // Allow all origins (or specify your domain)
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-  })
+app.use(cors(corsOptions)); // Use CORS middleware
+app.use(express.json()); // Parse incoming JSON requests
 
+// Handle preflight (OPTIONS) requests
+app.options('*', cors(corsOptions)); // For all routes
 
 // Connect to MongoDB
-mongoose.connect("mongodb+srv://abbasvajwana1:abbasatlas77@cluster1.0bhubyy.mongodb.net/travelDB", { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect("mongodb+srv://abbasvajwana1:abbasatlas77@cluster1.0bhubyy.mongodb.net/travelDB", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
     .then(() => console.log("Connected to MongoDB"))
     .catch(err => console.error("Could not connect to MongoDB...", err));
 
@@ -52,7 +59,7 @@ app.post('/FindHotels', (req, res) => {
             if (hotels.length > 0) {
                 res.json(hotels);
             } else {
-                res.json("no hotel available");
+                res.json("no hotels available");
             }
         })
         .catch(error => {
@@ -76,3 +83,8 @@ app.post('/findTrains', (req, res) => {
         });
 });
 
+// Start server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
