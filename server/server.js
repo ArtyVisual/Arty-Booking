@@ -16,7 +16,7 @@ app.use((req, res, next) => {
     next();
   })
 
-app.use(cors(corsOptions));
+
 
 // Connect to MongoDB
 mongoose.connect("mongodb+srv://abbasvajwana1:abbasatlas77@cluster1.0bhubyy.mongodb.net/travelDB", { useNewUrlParser: true, useUnifiedTopology: true })
