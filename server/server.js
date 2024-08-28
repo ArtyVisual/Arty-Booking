@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require('mongoose');
-const cors = require('cors')
+const cors = require('cors');
 const FlightModel = require('./models/Flight'); // Import Flight model
 const HotelModel = require('./models/Hotel'); // Import Hotel model
 const TrainModel = require('./models/Train'); // Import Train model
@@ -10,13 +10,16 @@ const app = express();
 app.use(express.json());
 
 const corsOptions = {
-    origin: 'https://arty-booking-app.vercel.app',
+    origin: 'https://arty-booking-app.vercel.app', // Corrected origin
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true, // if you need to send cookies or HTTP authentication
+    credentials: true,
     optionsSuccessStatus: 204,
-  };
-  
+};
+
 app.use(cors(corsOptions));
+
+// Handle preflight requests for CORS
+app.options('*', cors(corsOptions));
 
 // Connect to MongoDB
 mongoose.connect("mongodb+srv://abbasvajwana1:abbasatlas77@cluster1.0bhubyy.mongodb.net/travelDB", { useNewUrlParser: true, useUnifiedTopology: true })
