@@ -11,7 +11,7 @@ app.use(express.json());
 
 app.use((req, res, next) => {
     // Set CORS headers manually
-    res.header('Access-Control-Allow-Origin', 'https://arty-booking-app.vercel.app'); // Allow all origins (or specify your domain)
+    res.header('Access-Control-Allow-Origin', 'https://arty-booking.vercel.app'); // Allow all origins (or specify your domain)
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
