@@ -8,12 +8,13 @@ const app = express();
 
 app.use(express.json());
 
-const corsOptions = {
-    origin: 'https://arty-booking-app.vercel.app/', // Replace with your frontend URL
-    optionsSuccessStatus: 200, // For legacy browser support
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true // Allow credentials if needed
-};
+app.use((req, res, next) => {
+    // Set CORS headers manually
+    res.header('Access-Control-Allow-Origin', 'https://arty-booking-app.vercel.app/'); // Allow all origins (or specify your domain)
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+  })
 
 app.use(cors(corsOptions));
 
