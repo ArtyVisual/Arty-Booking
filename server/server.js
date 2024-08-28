@@ -11,9 +11,6 @@ app.use(express.json());
 
 const corsOptions = {
     origin: 'https://arty-booking-app.vercel.app', // Corrected origin
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-    optionsSuccessStatus: 204,
 };
 
 
