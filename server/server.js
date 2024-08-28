@@ -16,9 +16,9 @@ const corsOptions = {
     optionsSuccessStatus: 204,
 };
 
-app.use(cors(corsOptions));
 
 // Handle preflight requests for CORS
+app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
 
 // Connect to MongoDB
