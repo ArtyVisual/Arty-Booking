@@ -32,9 +32,9 @@ const imageMap = {
 
 const Hotel = () => {
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
+  const [loading, setLoading] = useState(false);
   const [City, setCity] = useState('');
   const [hotels, setHotels] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   axios.defaults.withCredentials=true;
 
@@ -42,7 +42,7 @@ const Hotel = () => {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve();
-      }, d * 100);
+      }, d * 1000);
     });
   };
 

@@ -5,20 +5,32 @@ import { useLocation } from 'react-router-dom';
 import Lottie from 'react-lottie';
 import animationData from './img/train.json';
 import axios from "axios";
+import { useForm } from 'react-hook-form';
 
 
 
 const Train = () => {
-
+    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
     const [From, setFrom] = useState('');
     const [To, setTo] = useState('');
     const [trains, setTrains] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     
     axios.defaults.withCredentials=true;
 
-    const handleSubmit = (e) => {
-        e.preventDefault(); // Prevent default form submission
+    const delay = (d) => {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve();
+          }, d * 1000);
+        });
+      };
+    
+    const onSubmit = async (data) => {
+        setLoading(true); // Show loading text
+        await delay(1); // Prevent default form submission
+
         axios.post('https://arty-booking-api.vercel.app/findTrains', { from: From, to: To })
             .then(result => {
 
@@ -28,7 +40,10 @@ const Train = () => {
                     setTrains([]);
                 }
             })
-            .catch(err => console.log(err));
+            .catch(err => console.log(err))
+            .finally(() => {
+                setLoading(false); // Hide loading text after request completes
+              });
     }
 
 
@@ -81,7 +96,7 @@ const Train = () => {
     return (
         <div className='hotel' >
 
-            <form id='travelForm' onSubmit={handleSubmit}>
+            <form id='travelForm' onSubmit={handleSubmit(onSubmit)}>
                 <div className='searchpanel p-10 glass-effect3 grid justify-center items-center justify-items-center gap-5'>
 
                     <div className='outline'>
@@ -130,12 +145,41 @@ const Train = () => {
                         </select>
                     </div>
                     <div>
-                        <button className='font-bold text-xl' type="submit" name="submit">SEARCH</button>
+                        <button disabled={loading} className='font-bold text-xl' type="submit" name="submit">SEARCH</button>
                     </div>
                 </div>
             </form>
 
-            <div className='box-container pt-32 flex flex-wrap gap-20 justify-center items-center m-0 p-5 md:p-20'>
+            <div className={`justify-items-center items-center ${ loading ? 'grid md:h-56 h-36' : '' } `} >
+                    {loading && 
+                    <section class="loader">
+                    <div>
+                        <div>
+                        <span class="one h6"></span>
+                        <span class="two h3"></span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div>
+                        <span class="one h1"></span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div>
+                        <span class="two h2"></span>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                        <span class="one h4"></span>
+                        </div>
+                    </div>
+                    </section>}
+            </div>
+
+            <div className={`box-container pt-32 flex flex-wrap gap-20 justify-center items-center m-0 p-5 md:p-20 ${ loading ? 'blur-md' : '' } `}>
                 {trains.length > 0 ? (
                     trains.map((train, index) => (
                         <div key={index} className='box flex w-11/12 md:w-2/5  flex-wrap justify-center items-center cards glass-effect p-2'>

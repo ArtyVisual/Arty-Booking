@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import Lottie from 'react-lottie';
 import animationData from './img/bus1.json';
 import axios from "axios";
+import { useForm } from 'react-hook-form';
 
 import h1 from './img/bg1.jpg'
 import f1 from './img/airindia.png'
@@ -29,14 +30,26 @@ const imageMap = {
 
 const Bus = () => {
     
+    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
+    const [loading, setLoading] = useState(false);
     const [From, setFrom] = useState('');
     const [To, setTo] = useState('');
     const [flights, setFlights] = useState([]);
 
     axios.defaults.withCredentials=true;
     
-    const handleSubmit = (e) => {
-        e.preventDefault(); // Prevent default form submission
+    const delay = (d) => {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve();
+          }, d * 1000);
+        });
+      };
+    
+    const onSubmit = async (data) => {
+        setLoading(true); // Show loading text
+        await delay(1);
+         // Prevent default form submission
         axios.post('https://arty-booking-api.vercel.app//findFlights', { from: From, to: To })
             .then(result => {
                 
@@ -46,7 +59,10 @@ const Bus = () => {
                     setFlights([]);
                 }
             })
-            .catch(err => console.log(err));
+            .catch(err => console.log(err))
+            .finally(() => {
+                setLoading(false); // Hide loading text after request completes
+              });
     }
 
 
@@ -92,7 +108,7 @@ const Bus = () => {
     return (
         <div className='hotel' >
 
-            <form id='travelForm' onSubmit={handleSubmit}>
+            <form id='travelForm' onSubmit={handleSubmit(onSubmit)}>
             <div  className='searchpanel p-10 glass-effect3 grid justify-center items-center justify-items-center gap-5'>
 
                     <div className='outline'>
@@ -141,12 +157,41 @@ const Bus = () => {
                         </select>
                     </div>
                     <div>
-                        <button className='font-bold text-xl' type="submit" name="submit">SEARCH</button>
+                        <button disabled={loading} className='font-bold text-xl' type="submit" name="submit">SEARCH</button>
                     </div>
             </div>
             </form>
 
-            <div className='box-container pt-32 flex flex-wrap gap-20 justify-center items-center m-0 p-20'>
+            <div className={`justify-items-center items-center ${ loading ? 'grid md:h-56 h-36' : '' } `} >
+                    {loading && 
+                    <section class="loader">
+                    <div>
+                        <div>
+                        <span class="one h6"></span>
+                        <span class="two h3"></span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div>
+                        <span class="one h1"></span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div>
+                        <span class="two h2"></span>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                        <span class="one h4"></span>
+                        </div>
+                    </div>
+                    </section>}
+             </div>
+
+            <div className={`box-container pt-32 flex flex-wrap gap-20 justify-center items-center m-0 p-20 ${ loading ? 'blur-md' : '' } `}>
                 {flights.length > 0 ? (
                     flights.map((flight, index) => (
                         <div key={index} className='box flex cards glass-effect p-2'>
