@@ -42,13 +42,13 @@ const Hotel = () => {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve();
-      }, d * 1000);
+      }, d * 100);
     });
   };
 
   const onSubmit = async (data) => {
     setLoading(true); // Show loading text
-    await delay(2);
+    await delay(1);
 
     axios.post('https://arty-booking-api.vercel.app/FindHotels', { city: City })
       .then(result => {
