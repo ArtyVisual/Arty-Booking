@@ -34,7 +34,7 @@ const Bus = () => {
     const [loading, setLoading] = useState(false);
     const [From, setFrom] = useState('');
     const [To, setTo] = useState('');
-    const [flights, setFlights] = useState([]);
+    const [trains, setTrains] = useState([]);
 
     axios.defaults.withCredentials=true;
     
@@ -50,19 +50,19 @@ const Bus = () => {
         setLoading(true); // Show loading text
         await delay(1);
          // Prevent default form submission
-        axios.post('https://arty-booking-api.vercel.app//findFlights', { from: From, to: To })
-            .then(result => {
-                
-                if (result.data && result.data !== "no flights available") {
-                    setFlights(result.data);
-                } else {
-                    setFlights([]);
-                }
-            })
-            .catch(err => console.log(err))
-            .finally(() => {
-                setLoading(false); // Hide loading text after request completes
-              });
+        axios.post('https://arty-booking-api.vercel.app/findTrains', { from: From, to: To })
+         .then(result => {
+
+             if (result.data && result.data !== "no trains available") {
+                 setTrains(result.data);
+             } else {
+                 setTrains([]);
+             }
+         })
+         .catch(err => console.log(err))
+         .finally(() => {
+             setLoading(false); // Hide loading text after request completes
+           });
     }
 
 
@@ -192,31 +192,67 @@ const Bus = () => {
              </div>
 
             <div className={`box-container pt-32 flex flex-wrap gap-20 justify-center items-center m-0 p-20 ${ loading ? 'blur-md' : '' } `}>
-                {flights.length > 0 ? (
-                    flights.map((flight, index) => (
-                        <div key={index} className='box flex cards glass-effect p-2'>
-                            <img className='h-44 w-56' src={imageMap[flight.img]} alt="" />
-                            <div className='p-5 grid '>
+            {trains.length > 0 ? (
+                    trains.map((train, index) => (
+                        <div key={index} className='box flex w-11/12 md:w-2/5  flex-wrap justify-center items-center cards glass-effect p-2'>
+                            <div className='p-1 py-5 grid '>
                                 <div>
-                                     <h2 className='text-center'>Details :</h2>
+                                    <h2 className='text-center mb-4'>Details :</h2>
                                 </div>
-                                <div className='flex gap-1'>
-                                    <div className='p-3 grid'>
-                                        <span>From: </span>
-                                        <span>To: </span>
-                                        <span>Price: </span>
+
+                                {/* for the big screen */}
+                                <div className='hidden md:flex gap-5 text-lg '>
+                                    <div className='flex gap-1 '>
+                                        <div className='p-3 grid text-gray-400'>
+                                            <span>Name : </span>
+                                            <span>From: </span>
+                                            <span>Train No :  </span>
+                                        </div>
+                                        <div className='p-3 grid justify-center justify-items-center  font-bold'>
+                                            <span>{train.name}</span>
+                                            <span>{train.from}</span>
+                                            <span>{train.tno}</span>
+                                        </div>
                                     </div>
-                                    <div className='p-3 grid'>
-                                        <span>{flight.from}</span>
-                                        <span>{flight.to}</span>
-                                        <span>{flight.price}</span>
+                                    <div className='flex gap-1'>
+                                        <div className='p-3 grid text-gray-400'>
+                                            <span>Status: </span>
+                                            <span>To: </span>
+                                            <span>Price: </span>
+                                        </div>
+                                        <div className='p-3 grid  justify-center justify-items-center font-bold'>
+                                            <span className={train.status === "Avl" ? 'text-green-600' : 'text-red-500'}>{train.status}</span>
+                                            <span>{train.to}</span>
+                                            <span>{train.price}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* for the small screen */}
+                                <div className='flex md:hidden text-sm '>
+                                    <div className='grid p-4 '>
+                                        <div className=' grid text-gray-400'>
+                                            <span>Name : </span>
+                                            <span>Status : </span>
+                                            <span>Train No : </span>
+                                            <span>Price : </span>
+                                        </div>
+
+                                    </div>
+                                    <div className='grid p-4 '>
+                                        <div className=' grid justify-center justify-items-center  font-bold'>
+                                            <span>{train.name}</span>
+                                            <span className={train.status === "Avl" ? 'text-green-600' : 'text-red-500'}>{train.status}</span>
+                                            <span>{train.tno}</span>
+                                            <span>{train.price}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     ))
                 ) : (
-                    <p id='message' className='font-bold text-xl  md:text-3xl text-red-700'>No flights available !</p>
+                    <p id='message' className='font-bold text-3xl text-red-700'>No trains available on this route !</p>
                 )}
             </div>
      
