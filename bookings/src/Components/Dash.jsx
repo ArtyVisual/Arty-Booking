@@ -65,9 +65,15 @@ const Dash = () => {
 
           </div> */}
           <div  className='md:block hidden'>
-            <button className='m-2'>
-              github
-            </button>
+          <div className="hidden md:flex navbar-end  ">
+                    <NavLink to="https://github.com/ArtyVisual/">
+                        <div className='flex items-center hover:bg-gray-500 bg-white btn mr-2 px-2 py-2 rounded-md m-2
+                        text-black font-sans'>
+                            <img src={git} className='w-6 h-6 ' alt="" />
+                            <span className=" hidden text-md md:flex px-1 font-bold ">GITHUB</span>
+                        </div>
+                    </NavLink>
+                </div>
           </div>
         </div>
       </div>

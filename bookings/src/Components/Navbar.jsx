@@ -37,10 +37,14 @@ const Navbar = () => {
                 {/* <div >
                     <img className='md:hidden' id='menu' onClick={drop} src={menu} alt="" />
                 </div> */}
-                <div className='md:block hidden'>
-                    <button className='m-2'>
-                        github
-                    </button>
+                <div className="hidden md:flex navbar-end  ">
+                    <NavLink to="https://github.com/ArtyVisual/">
+                        <div className='flex items-center hover:bg-gray-500 bg-white btn mr-2 px-2 py-2 rounded-md m-2
+                        text-black font-sans'>
+                            <img src={git} className='w-6 h-6 ' alt="" />
+                            <span className=" hidden text-md md:flex px-1 font-bold ">GITHUB</span>
+                        </div>
+                    </NavLink>
                 </div>
             </div>
             {/* <ul id='drop' onMouseEnter={drop} onMouseLeave={hide} className=' links  m-1 mx-5 md:w-72 hidden md:hidden text-md glass-effect2 bg-white p-2 justify-evenly justify-items-center items-center font-extrabold text-black'>
