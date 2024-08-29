@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import img from './img/logo2.png'
 import { NavLink } from 'react-router-dom'
 import menu from './img/burger-bar.png'
+import git from './img/github.png'
 
 const Dash = () => {
 
