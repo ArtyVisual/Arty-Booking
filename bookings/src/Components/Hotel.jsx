@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import Lottie from 'react-lottie';
 import animationData from './img/building1.json';
 import axios from 'axios';
+import {useForm} from 'react-hook-form';
 
 import h1 from './img/bg1.jpg'
 import ht1 from './img/taj_lake.webp'
@@ -30,14 +31,25 @@ const imageMap = {
 };
 
 const Hotel = () => {
-
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
   const [City, setCity] = useState('');
   const [hotels, setHotels] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   axios.defaults.withCredentials=true;
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent default form submission
+  const delay = (d) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, d * 1000);
+    });
+  };
+
+  const onSubmit = async (data) => {
+    setLoading(true); // Show loading text
+    await delay(2);
+
     axios.post('https://arty-booking-api.vercel.app/FindHotels', { city: City })
       .then(result => {
         if (result.data && Array.isArray(result.data) && result.data.length > 0) {
@@ -46,7 +58,10 @@ const Hotel = () => {
           setHotels([]);
         }
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err))
+      .finally(() => {
+        setLoading(false); // Hide loading text after request completes
+      });
   }
 
 
@@ -87,7 +102,7 @@ const Hotel = () => {
 
   return (
     <div className='hotel' >
-      <form id='travelForm' onSubmit={handleSubmit}>
+      <form id='travelForm' onSubmit={handleSubmit(onSubmit)}>
         <div className='searchpanel p-10 glass-effect3 grid justify-center items-center justify-items-center gap-5'>
 
           <div className='outline'>
@@ -103,13 +118,41 @@ const Hotel = () => {
             </select>
           </div>
           <div>
-            <button className='font-bold text-xl hover:text-blue-950' type="submit" name="submit">SEARCH</button>
+            <button disabled={loading} className='font-bold text-xl hover:text-blue-950' type="submit" name="submit">SEARCH</button>
           </div>
 
         </div>
       </form>
+      <div className={`justify-items-center items-center ${ loading ? 'grid md:h-56 h-36' : '' } `} >
+                    {loading && 
+                    <section class="loader">
+                    <div>
+                        <div>
+                        <span class="one h6"></span>
+                        <span class="two h3"></span>
+                        </div>
+                    </div>
 
-      <div className='box-container  flex flex-wrap gap-20 justify-center items-center m-0 p-10 md:p-20'>
+                    <div>
+                        <div>
+                        <span class="one h1"></span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div>
+                        <span class="two h2"></span>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                        <span class="one h4"></span>
+                        </div>
+                    </div>
+                    </section>}
+      </div>
+
+      <div className={`box-container flex flex-wrap gap-20 justify-center items-center m-0 p-10 md:p-20 ${ loading ? 'hidden' : '' }`}>
 
         {hotels.length > 0 ? (
           hotels.map((hotel, index) => (
