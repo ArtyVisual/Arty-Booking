@@ -164,31 +164,17 @@ const Bus = () => {
 
             <div className={`justify-items-center items-center ${ loading ? 'grid md:h-56 h-36' : '' } `} >
                     {loading && 
-                    <section class="loader">
-                    <div>
-                        <div>
-                        <span class="one h6"></span>
-                        <span class="two h3"></span>
-                        </div>
+                    <div class="hourglassBackground">
+                    <div class="hourglassContainer">
+                      <div class="hourglassCurves"></div>
+                      <div class="hourglassCapTop"></div>
+                      <div class="hourglassGlassTop"></div>
+                      <div class="hourglassSand"></div>
+                      <div class="hourglassSandStream"></div>
+                      <div class="hourglassCapBottom"></div>
+                      <div class="hourglassGlass"></div>
                     </div>
-
-                    <div>
-                        <div>
-                        <span class="one h1"></span>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div>
-                        <span class="two h2"></span>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                        <span class="one h4"></span>
-                        </div>
-                    </div>
-                    </section>}
+                  </div>}
              </div>
 
             <div className={`box-container pt-32 flex flex-wrap gap-20 justify-center items-center m-0 p-20 ${ loading ? 'blur-md' : '' } `}>
