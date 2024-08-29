@@ -152,7 +152,7 @@ const Hotel = () => {
                     </section>}
       </div>
 
-      <div className={`box-container flex flex-wrap gap-20 justify-center items-center m-0 p-10 md:p-20 ${ loading ? 'hidden' : '' }`}>
+      <div className={`box-container flex flex-wrap gap-20 justify-center items-center m-0 p-10 md:p-20 ${ loading ? 'blur-md' : '' }`}>
 
         {hotels.length > 0 ? (
           hotels.map((hotel, index) => (
