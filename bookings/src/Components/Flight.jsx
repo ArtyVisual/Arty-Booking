@@ -181,7 +181,7 @@ const Flight = () => {
                     </section>}
             </div>
 
-            <div className={`box-container pt-32 flex flex-wrap gap-20 justify-center items-center m-0 p-20 ${ loading ? 'grid md:h-56 h-36' : '' }`}>
+            <div className={`box-container pt-32 flex flex-wrap gap-20 justify-center items-center m-0 p-20 ${ loading ? 'blur-md' : '' }`}>
                 {flights.length > 0 ? (
                     flights.map((flight, index) => (
                         <div key={index} className='box grid md:flex cards glass-effect p-2'>
