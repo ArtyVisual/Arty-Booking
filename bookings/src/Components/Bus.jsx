@@ -104,7 +104,7 @@ const Bus = () => {
     };
 
     
-   
+ 
     return (
         <div className='hotel' >
 
@@ -241,23 +241,14 @@ const Bus = () => {
                     <p id='message' className='font-bold text-3xl text-red-700'>No trains available on this route !</p>
                 )}
             </div>
-     
-
 
             <div className=' flex flex-wrap gap-20 justify-center items-center m-0 p-20'>
 
-
-                
-
-
-
-
-                <div className='overlay'>  </div>
+               <div className='overlay'>  </div>
                 <div className='bus1'>
                     <Lottie options={defaultOptions} 
                     />
                 </div>
-
 
             </div>
 

@@ -23,7 +23,7 @@ app.use(express.json()); // Parse incoming JSON requests
 app.options('*', cors(corsOptions)); // For all routes
 
 // Connect to MongoDB
-mongoose.connect("mongodb+srv://abbasvajwana1:abbasatlas77@cluster1.0bhubyy.mongodb.net/travelDB", {
+mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
